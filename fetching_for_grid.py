@@ -1,6 +1,9 @@
+from timer import speed_deco
 import requests
 from flask import render_template
 
+
+@speed_deco
 def fetch_pokemons(index):
     POKEAPI = requests.get(index).json()
 
@@ -23,6 +26,6 @@ def fetch_pokemons(index):
             'next' : POKEAPI['next'],
         }
         )
-    print (list_nav)
+    
     return render_template('grid.html', POKEAPI = pokelista, nav = list_nav)
 

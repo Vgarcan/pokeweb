@@ -3,6 +3,7 @@ import requests
 from fetching_for_grid import fetch_pokemons
 
 
+
 ########### API #############
 #############################
 api_offset = 0 
@@ -22,11 +23,12 @@ app= Flask(__name__)
 
 
 
-
 @app.route('/')
 def pokeindex ():
 
    return fetch_pokemons(POKEMAIN)
+
+
 
 @app.route('/<path:url>')
 def pokeindex2 (url):
@@ -37,5 +39,5 @@ def pokeindex2 (url):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0',port=5000)
 #############################
