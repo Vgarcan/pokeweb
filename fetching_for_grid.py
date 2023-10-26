@@ -27,5 +27,5 @@ def fetch_pokemons(index):
         }
         )
     
-    return render_template('grid.html', POKEAPI = pokelista, nav = list_nav)
+    return render_template('grid.html',POKEAPI=pokelista,nav=list_nav)
 
