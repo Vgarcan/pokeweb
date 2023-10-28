@@ -1,43 +1,33 @@
-import requests
-
-poke_point = 'https://pokeapi.co/api/v2/pokemon/122/'
-POKEAPI = requests.get(poke_point).json()
- 
-
-def dict_inspect(dict_item, lvl=0, mode=type):
+def dict_inspect(url, lvl=0, mode=type):
     '''
-    This function iterates through a nested dictionary and prints information about its keys and values.
+    This function retrieves a JSON object from a given URL and inspects its structure, printing information about its keys and values.
 
     Args:
-    dict_item (dict): The dictionary you want to analyze.
+    url (str): The URL from which to fetch the JSON data.
     lvl (int): Nesting level (default is 0).
     mode (type): A function that determines how to display the value's type (default is type).
 
     Usage:
-    1. Provide the dictionary you want to analyze as 'dict_item'.
+    1. Provide the 'url' to fetch the JSON data from.
     2. Optionally, you can specify the initial nesting level 'lvl' (default is 0).
     3. Optionally, you can change the function for displaying the value's type using 'mode' (default is type).
 
-    The function iterates through the dictionary, displaying keys in uppercase, the content type for each key,
-    and, if a value is a list or dictionary, it shows additional information.
+    The function retrieves JSON data from the specified URL, explores the structure, displays keys in uppercase, 
+    the content type for each key, and, if a value is a list or dictionary, it shows additional information.
 
-    Usage Example:
-    example_dict = {
-        'name': 'John',
-        'ages': [25, 30, 35],
-        'data': {
-            'height': 180,
-            'weight': 75
-        }
-    }
-    dict_inspect(example_dict)
+    Example Usage:
+    json_url = "https://example.com/data.json"
+    dict_inspect(json_url)
 
-    This example will print information about the keys and values in 'example_dict' along with their content types.
+    This example will fetch JSON data from 'json_url' and print information about its keys and values along with their content types.
 
     Note:
     If a value is a nested list or dictionary, the function will also explore those nested elements.
 
     '''
+    import requests
+
+    dict_item = requests.get(url).json
 
     INDENTATION = '--//' * lvl
 
@@ -79,10 +69,3 @@ def dict_inspect(dict_item, lvl=0, mode=type):
 
             # For each KEY in the dictionary 
             dict_inspect(key_item[1], lvl= lvl+1, mode=mode)
-
-
-
-dict_inspect(POKEAPI, mode=str)
-
-
-
