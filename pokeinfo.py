@@ -2,9 +2,9 @@ import requests
 
 poke_point = 'https://pokeapi.co/api/v2/pokemon/122/'
 POKEAPI = requests.get(poke_point).json()
+ 
 
-
-def loop_items(dict_item, lvl=0, mode=type):
+def dict_inspect(dict_item, lvl=0, mode=type):
     '''
     This function iterates through a nested dictionary and prints information about its keys and values.
 
@@ -30,7 +30,7 @@ def loop_items(dict_item, lvl=0, mode=type):
             'weight': 75
         }
     }
-    loop_items(example_dict)
+    dict_inspect(example_dict)
 
     This example will print information about the keys and values in 'example_dict' along with their content types.
 
@@ -64,13 +64,13 @@ def loop_items(dict_item, lvl=0, mode=type):
                 if isinstance(listitem, dict):
                     
                     # For each KEY in the dictionary 
-                    loop_items(listitem, lvl= lvl+1, mode=mode)
+                    dict_inspect(listitem, lvl= lvl+1, mode=mode)
                                      
                 # If the list item is a LIST
                 elif isinstance(listitem, list):
                     
                     # For each KEY in the dictionary 
-                    loop_items(listitem, lvl= lvl+1, mode=mode)
+                    dict_inspect(listitem, lvl= lvl+1, mode=mode)
           
         ##################################################################
             
@@ -78,11 +78,11 @@ def loop_items(dict_item, lvl=0, mode=type):
         elif isinstance(key_item[1], dict):
 
             # For each KEY in the dictionary 
-            loop_items(key_item[1], lvl= lvl+1, mode=mode)
+            dict_inspect(key_item[1], lvl= lvl+1, mode=mode)
 
 
 
-loop_items(POKEAPI, mode=str)
+dict_inspect(POKEAPI, mode=str)
 
 
 
